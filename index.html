@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense &amp; Budget Visualizer</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header>
+    <div class="header-inner">
+      <span class="header-title">Expense &amp; Budget Visualizer</span>
+      <div class="balance-section">
+        <span class="balance-label">Total:</span>
+        <span id="balance-display">Rp&nbsp;0</span>
+      </div>
+      <button id="theme-toggle" type="button" aria-label="Change dark/light theme">🌙 Dark</button>
+    </div>
+  </header>
+
+  <!-- ── Main ── -->
+  <main class="app-wrapper">
+
+    <!-- Storage error banner -->
+    <div id="storage-banner" role="alert" aria-live="polite"></div>
+
+    <!-- Input Form -->
+    <section class="card" aria-labelledby="form-heading">
+      <h2 class="card-title" id="form-heading">Add transaction</h2>
+      <form id="input-form" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="item-name">Item name</label>
+            <input
+              type="text"
+              id="item-name"
+              name="item-name"
+              placeholder="cth. Kopi"
+              autocomplete="off"
+            />
+          </div>
+          <div class="field">
+            <label for="amount">Amount (Rp)</label>
+            <div class="amount-wrapper">
+              <span class="amount-prefix" aria-hidden="true">Rp</span>
+              <input
+                type="text"
+                id="amount"
+                name="amount"
+                placeholder="0"
+                inputmode="numeric"
+                autocomplete="off"
+                data-raw-value=""
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="category">Category</label>
+            <select id="category" name="category" class="category-select">
+              <option value="">Select category</option>
+              <option value="Food">Food</option>
+              <option value="Transport">Transport</option>
+              <option value="Fun">Fun</option>
+              <option value="Custom">Custom…</option>
+            </select>
+          </div>
+          <div class="field" id="custom-category-field">
+            <label for="custom-category">Custom category name</label>
+            <input
+              type="text"
+              id="custom-category"
+              name="custom-category"
+              placeholder="e.g. Healthcare"
+              autocomplete="off"
+            />
+          </div>
+        </div>
+
+        <div id="form-error" role="alert" aria-live="polite"></div>
+
+        <button type="submit" id="submit-btn">Add Transaction</button>
+      </form>
+
+      <!-- Custom Category Manager -->
+      <div class="cat-manager" aria-label="Custom categories">
+        <h3 class="cat-manager-title">Custom Categories</h3>
+        <div id="custom-category-list" class="cat-list" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- List + Chart -->
+    <div class="content-grid">
+
+      <!-- Transaction List -->
+      <section class="card" aria-labelledby="list-heading">
+        <h2 class="card-title" id="list-heading">Transactions</h2>
+        <div id="sort-controls" role="group" aria-label="Sort transactions">
+          <span class="sort-label">Sort:</span>
+          <button class="sort-btn" type="button" data-sort="default" aria-pressed="true">Default</button>
+          <button class="sort-btn" type="button" data-sort="amount" aria-pressed="false">Amount</button>
+          <button class="sort-btn" type="button" data-sort="category" aria-pressed="false">Category</button>
+        </div>
+        <ul id="transaction-list" aria-label="Transaction list" aria-live="polite"></ul>
+      </section>
+
+      <!-- Spending Chart -->
+      <section class="card" aria-labelledby="chart-heading">
+        <h2 class="card-title" id="chart-heading">Expenses per Category</h2>
+        <div class="chart-wrapper">
+          <canvas
+            id="spending-chart"
+            width="220"
+            height="220"
+            aria-label="Pie chart of expenditure distribution per category"
+            role="img"
+          ></canvas>
+        </div>
+        <ol id="chart-legend" class="chart-legend" aria-label="Chart legend"></ol>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Save error toast -->
+  <div id="save-toast" role="status" aria-live="polite"></div>
+
+  <!-- Chart tooltip -->
+  <div id="chart-tooltip" class="chart-tooltip" role="tooltip" aria-hidden="true"></div>
+
+  <!-- Confirm / Alert dialog -->
+  <div id="dialog-overlay" class="dialog-overlay" role="dialog" aria-modal="true" aria-labelledby="dialog-title">
+    <div class="dialog-box">
+      <h2 class="dialog-title" id="dialog-title"></h2>
+      <p class="dialog-message" id="dialog-message"></p>
+      <div class="dialog-actions">
+        <button id="dialog-cancel" class="dialog-btn dialog-btn-cancel" type="button">Cancel</button>
+        <button id="dialog-ok"     class="dialog-btn dialog-btn-ok"     type="button">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
