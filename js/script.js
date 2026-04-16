@@ -855,18 +855,18 @@ function validateForm(formData) {
   const errors = [];
 
   if (!formData.name || formData.name.trim() === '') {
-    errors.push('Nama item wajib diisi.');
+    errors.push('Item name is required.');
   }
 
   if (isNaN(formData.amount) || formData.amount <= 0) {
-    errors.push('Jumlah harus lebih dari 0.');
+    errors.push('The amount must be greater than 0.');
   }
 
   if (!formData.category) {
-    errors.push('Pilih kategori.');
+    errors.push('Select a category.');
   } else if (formData.category === 'Custom') {
     if (!formData.customCategory || formData.customCategory.trim() === '') {
-      errors.push('Nama kategori kustom wajib diisi.');
+      errors.push('Custom category name is required.');
     }
   }
 
