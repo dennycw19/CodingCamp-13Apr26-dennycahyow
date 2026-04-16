@@ -326,6 +326,7 @@ main {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 30ch;
 }
 
 .transaction-meta {
@@ -346,6 +347,10 @@ main {
   font-weight: 500;
   color: var(--badge-fg);
   background: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 15ch;
 }
 
 /* Category colors */

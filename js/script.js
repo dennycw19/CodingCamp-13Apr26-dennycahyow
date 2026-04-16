@@ -79,6 +79,7 @@ function renderTransactionList() {
     const name = document.createElement('span');
     name.className = 'transaction-name';
     name.textContent = t.name;
+    name.title = t.name;
 
     const meta = document.createElement('div');
     meta.className = 'transaction-meta';
@@ -704,13 +705,18 @@ function addTransaction(name, amount, category) {
   showToast('Transaction "' + name + '" added successfully.', 'success');
 }
 
+function truncate(text, maxLength = 30) {
+  if (text.length <= maxLength) return text;
+  return text.slice(0, maxLength) + "...";
+}
+
 function deleteTransaction(id) {
   const tx = state.transactions.find(t => t.id === id);
   if (!tx) return;
 
   showDialog({
     title: 'Delete Transaction',
-    message: 'Are you sure you want to delete "' + tx.name + '"? This action cannot be undone.',
+    message: 'Are you sure you want to delete "' + truncate(tx.name, 30) + '"? This action cannot be undone.',
     type: 'confirm',
     variant: 'danger',
     onConfirm: function () {
@@ -862,11 +868,17 @@ function validateForm(formData) {
     errors.push('The amount must be greater than 0.');
   }
 
+  if (formData.amount >= 1000000000000){
+    errors.push('The amount must be lesser than Rp999.999.999.999');
+  }
+
   if (!formData.category) {
     errors.push('Select a category.');
   } else if (formData.category === 'Custom') {
     if (!formData.customCategory || formData.customCategory.trim() === '') {
       errors.push('Custom category name is required.');
+    } else if (formData.customCategory.trim().length > 20){
+      errors.push('Custom category name must be at most 20 characters')
     }
   }
 
