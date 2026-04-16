@@ -407,7 +407,7 @@ function renderChart(canvas, transactions) {
     ctx.font = '16px system-ui, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('Tidak ada data', cx, cy);
+    ctx.fillText('No data', cx, cy);
 
     if (legend) legend.innerHTML = '';
     return;
