@@ -646,7 +646,7 @@ function persist() {
     localStorage.setItem('ebv_transactions', JSON.stringify(state.transactions));
     localStorage.setItem('ebv_custom_categories', JSON.stringify(state.customCategories));
   } catch (e) {
-    showToast('Data tidak dapat disimpan.');
+    showToast('Data cannot be saved.');
   }
 }
 
@@ -657,7 +657,7 @@ function loadFromStorage() {
   } catch (e) {
     state.transactions = [];
     const banner = document.getElementById('storage-banner');
-    banner.textContent = 'Data tersimpan tidak dapat dimuat.';
+    banner.textContent = 'Saved data could not be loaded.';
     banner.classList.add('visible');
   }
 
