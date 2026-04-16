@@ -93,6 +93,7 @@ function renderTransactionList() {
     const badgeStyle = getCategoryBadgeStyle(t.category);
     if (badgeStyle) badge.setAttribute('style', badgeStyle);
     badge.textContent = t.category;
+    badge.title = t.category
 
     meta.appendChild(amountSpan);
     meta.appendChild(badge);
