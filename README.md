@@ -58,18 +58,13 @@ No installation or build step is required.
 
 1. **Clone or download** the repository:
    ```bash
-   git clone https://github.com/your-username/expense-budget-visualizer.git
+   git clone https://github.com/your-username/CodingCamp-13Apr26-dennycahyow.git
    ```
 
 2. **Open `index.html`** in any modern browser:
    ```
-   expense-budget-visualizer/
+   CodingCamp-13Apr26-dennycahyow/
    └── index.html   ← open this file directly
-   ```
-   Or serve it with any static file server, for example:
-   ```bash
-   npx serve .
-   # then visit http://localhost:3000
    ```
 
 3. That's it — no `npm install`, no build, no server required.
